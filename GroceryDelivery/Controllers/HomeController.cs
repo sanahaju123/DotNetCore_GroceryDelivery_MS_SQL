@@ -23,7 +23,31 @@ namespace Grocerydelivery.Controllers
             _groceryServices = groceryServices;
         }
 
-        
+
+        /// <summary>
+        /// Show all products
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("get-all-products")]
+        public async Task<IActionResult> AllProducts()
+        {
+            //do code here
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// Show list of categories
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("list-all-categories")]
+        public async Task<IActionResult> AllCategory()
+        {
+            //do code here
+            throw new NotImplementedException();
+        }
+
         /// <summary>
         /// Show the product Details by product id
         /// </summary>
