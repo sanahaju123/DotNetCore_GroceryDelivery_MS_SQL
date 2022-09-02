@@ -34,7 +34,6 @@ namespace Grocerydelivery
             services.AddHttpClient();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddDbContext<GroceryDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("ConnStr")));
-            //Injecting Services and Repository
             services.AddScoped<IGroceryRepository, GroceryRepository>();
             services.AddScoped<IGroceryServices, GroceryServices>();
         }
@@ -52,15 +51,19 @@ namespace Grocerydelivery
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+            app.UseRouting();
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "My Test1 Api v1");
             });
+            app.UseAuthorization();
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
- 
+            app.UseEndpoints(endpoints => {
+                endpoints.MapControllerRoute(name: "default", pattern: "{controller=Home}/{action=Index}/{id?}");
+            });
         }
     }
 }
